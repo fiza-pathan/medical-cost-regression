@@ -101,7 +101,7 @@ pip install -r requirements.txt
 jupyter notebook notebooks/medical_cost_regression_showdown.ipynb
 ```
 
-Or run directly on Kaggle: **[Open Notebook](#)**
+Or run directly on Kaggle: **[Open Notebook](https://www.kaggle.com/code/fizapathan21/medical-insurance-cost-analysis-regression)**
 
 ---
 
@@ -117,4 +117,4 @@ Or run directly on Kaggle: **[Open Notebook](#)**
 
 Built as part of my AI/ML engineering portfolio, working from ML fundamentals through to AI Research Engineer.
 
-**[Portfolio](#)** · **[LinkedIn](#)** · **[GitHub](#)**
+**[Portfolio](#)** · **[LinkedIn](https://www.linkedin.com/in/fizapathan/)** · **[GitHub](https://github.com/fiza-pathan)**
