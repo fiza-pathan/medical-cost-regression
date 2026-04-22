@@ -1,16 +1,16 @@
-# Project Write-Up: Medical Insurance Cost Prediction — Regression Algorithm Showdown
+# Project Write-Up: Medical Insurance Cost Prediction - Regression Algorithm Showdown
 
 ---
 
 ## 1. Project Summary
 
-**Title:** Medical Insurance Cost Prediction — Regression Algorithm Showdown
-**Type:** Supervised Learning — Regression
+**Title:** Medical Insurance Cost Prediction - Regression Algorithm Showdown
+**Type:** Supervised Learning - Regression
 **Domain:** Healthcare / Insurance
-**Duration:** [Your dates]
+**Duration:** [Feb 2025-April 2025]
 **Tools:** Python, scikit-learn, pandas, numpy, matplotlib, seaborn, SHAP
 
-**One-line description:** A rigorous comparison of five regression algorithms on medical insurance cost data, with engineered interaction features, cross-validated tuning, and SHAP-based explainability — concluding with an algorithm decision guide for practitioners.
+**One-line description:** A rigorous comparison of five regression algorithms on medical insurance cost data, with engineered interaction features, cross-validated tuning, and SHAP-based explainability, concluding with an algorithm decision guide for practitioners.
 
 ---
 
@@ -18,7 +18,7 @@
 
 Medical insurance costs in the United States are opaque and difficult to model accurately. Insurers price premiums using actuarial tables that often miss interaction effects between risk factors. Hospitals need cost forecasts to plan resource allocation. Policymakers need predictive models to target preventive care interventions at high-risk populations.
 
-**The research question:** Which regression model best predicts individual medical insurance costs for this dataset — and more importantly, why does it win? What does the answer tell us about when to use each algorithm in practice?
+**The research question:** Which regression model best predicts individual medical insurance costs for this dataset, and more importantly, why does it win? What does the answer tell us about when to use each algorithm in practice?
 
 **Why this problem matters:** Healthcare cost prediction is one of the most commercially and socially valuable ML applications. A model that accurately identifies high-cost individuals enables earlier interventions that save both money and lives. The average preventable hospitalisation in the US costs $15,000+. Even a 10% improvement in identifying high-risk patients has enormous real-world impact.
 
@@ -28,7 +28,7 @@ Medical insurance costs in the United States are opaque and difficult to model a
 
 - **Source:** Medical Cost Personal Dataset (Kaggle / public domain)
 - **Size:** 1,338 records × 7 features
-- **Target variable:** `charges` — individual annual medical insurance cost in USD
+- **Target variable:** `charges` - individual annual medical insurance cost in USD
 - **Features:**
   - `age`: integer, 18–64
   - `sex`: categorical (male/female)
@@ -36,7 +36,7 @@ Medical insurance costs in the United States are opaque and difficult to model a
   - `children`: integer, number of dependents
   - `smoker`: binary (yes/no)
   - `region`: categorical (northeast, northwest, southeast, southwest)
-- **Missing values:** None — clean dataset. Real-world note: production insurance datasets have ~15–30% missingness, requiring careful imputation strategies.
+- **Missing values:** None - clean dataset. Real-world note: production insurance datasets have ~15-30% missingness, requiring careful imputation strategies.
 
 ---
 
@@ -45,10 +45,10 @@ Medical insurance costs in the United States are opaque and difficult to model a
 | Tool | Why chosen |
 |---|---|
 | **scikit-learn** | Industry-standard ML library; Pipeline and ColumnTransformer enable reproducible, leak-free preprocessing |
-| **SHAP** | Model-agnostic explainability; critical for insurance domain where regulatory transparency is required |
-| **seaborn + matplotlib** | Best combination for statistical visualisation — seaborn for distributions, matplotlib for custom charts |
+| **SHAP** | Model-agnostic explainability; critical for the insurance domain where regulatory transparency is required |
+| **seaborn + matplotlib** | Best combination for statistical visualisation, seaborn for distributions, matplotlib for custom charts |
 | **GridSearchCV** | Systematic hyperparameter tuning with cross-validation; avoids the data leakage of manual tuning |
-| **numpy.log1p** | Log transform of target — essential when the target is right-skewed, as it stabilises variance for linear models |
+| **numpy.log1p** | Log transform of target, essential when the target is right-skewed, as it stabilises variance for linear models |
 
 ---
 
@@ -64,10 +64,10 @@ Based on EDA, I engineered four new features:
 - `obese`: binary flag for BMI ≥ 30
 - `smoker_obese`: interaction between smoking and obesity
 
-This was the highest-leverage decision in the project. The engineered features improved R² by 0.04+ across all models — more than the difference between the best and worst algorithms.
+This was the highest-leverage decision in the project. The engineered features improved R² by 0.04+ across all models, more than the difference between the best and worst algorithms.
 
 ### Step 3: Log-transform the target
-`charges` is heavily right-skewed (mean $13,270, max $63,770). I applied `log1p` transformation to normalise the target, which substantially improved the performance of all linear models. Results were inverse-transformed to report in original dollar terms.
+`charges` is heavily right-skewed (mean $13,270, max $63,770). I applied the `log1p` transformation to normalise the target, which substantially improved the performance of all linear models. Results were inverse-transformed to report in original dollar terms.
 
 ### Step 4: Pipeline-based preprocessing
 I used scikit-learn's `Pipeline` and `ColumnTransformer` to build a reproducible preprocessing pipeline that:
@@ -97,7 +97,7 @@ Plain linear models capped out around R²=0.86 despite tuning.
 *Solution:* EDA revealed the BMI×smoker interaction. Adding Polynomial features (degree 2) with Ridge regularisation captured this nonlinearity and pushed R² to 0.893.
 
 **Challenge 3: Overfitting risk with Polynomial features**
-Degree-2 polynomial expansion creates many new features — risk of overfitting on 1,338 samples.
+Degree-2 polynomial expansion creates many new features, with a risk of overfitting on 1,338 samples.
 *Solution:* Paired Polynomial features with Ridge regularisation (L2), which shrinks coefficients without eliminating features. Cross-validation confirmed the approach generalises well (CV R²: 0.881 vs test R²: 0.893).
 
 **Challenge 4: SHAP compatibility with Pipeline**
@@ -135,8 +135,8 @@ Degree-2 polynomial expansion creates many new features — risk of overfitting 
 The UCI/Kaggle community has published many notebooks on this dataset. Most report R² scores between 0.75 and 0.87 using plain linear or tree models without feature engineering.
 
 **How my approach differs:**
-- Most notebooks skip the log transform of the target — this alone accounts for ~0.06 R² improvement
-- Few notebooks engineer the `smoker_bmi` interaction explicitly — they rely on the model to discover it
+- Most notebooks skip the log transform of the target; this alone accounts for ~0.06 R² improvement
+- Few notebooks engineer the `smoker_bmi` interaction explicitly; they rely on the model to discover it
 - Almost none include SHAP explainability, which is critical for the insurance regulatory context
 - My systematic algorithm comparison with documented rationale is more instructive than picking one model
 
@@ -148,9 +148,9 @@ The UCI/Kaggle community has published many notebooks on this dataset. Most repo
 
 **Regression algorithms over tree-based:** This dataset is small (1,338 rows) and the relationships, once properly transformed and engineered, are approximately linear. Tree-based models (XGBoost, Random Forest) would likely overfit at this scale. The right tool is the right tool for the data size.
 
-**Ridge over Lasso as winner:** With engineered features that are all meaningful (proven by EDA and SHAP), Lasso's tendency to zero out features is a disadvantage. Ridge retains all features while preventing overfitting. ElasticNet is a reasonable middle ground but adds a hyperparameter without meaningful gain here.
+**Ridge over Lasso as winner:** With engineered features that are all meaningful (proven by EDA and SHAP), Lasso's tendency to zero out features is a disadvantage. Ridge retains all features while preventing overfitting. ElasticNet is a reasonable middle ground, but it adds a hyperparameter without a meaningful gain here.
 
-**scikit-learn Pipeline:** Prevents data leakage. Every notebook that fits `StandardScaler` on the full dataset before splitting has data leakage — their results are inflated. Pipeline ensures the scaler only ever sees training data.
+**scikit-learn Pipeline:** Prevents data leakage. Every notebook that fits `StandardScaler` on the full dataset before splitting has data leakage; their results are inflated. Pipeline ensures the scaler only ever sees training data.
 
 ---
 
@@ -158,10 +158,10 @@ The UCI/Kaggle community has published many notebooks on this dataset. Most repo
 
 This project reinforced a core principle: **EDA drives better models more than algorithm choice does.** The 0.04 R² improvement from feature engineering exceeded the improvement from switching between any two algorithms.
 
-The biggest learning: real-world ML is 70% problem understanding and feature engineering, 30% model selection. The best ML practitioners are the ones who understand their data deeply enough to engineer the right features — not the ones who try the most algorithms.
+The biggest learning: real-world ML is 70% problem understanding and feature engineering, 30% model selection. The best ML practitioners are the ones who understand their data deeply enough to engineer the right features, not the ones who try the most algorithms.
 
 **What I would do differently:**
-- Collect more data — 1,338 rows is very small for insurance pricing
+- Collect more data - 1,338 rows is very small for insurance pricing
 - Add interaction terms more systematically using domain knowledge (pre-existing conditions, claim history)
 - Test XGBoost and LightGBM for comparison (likely to win on a larger dataset)
 - Build a Streamlit dashboard for interactive cost estimation
