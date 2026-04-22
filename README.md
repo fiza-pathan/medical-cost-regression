@@ -8,7 +8,7 @@
 
 > Comparing Linear · Ridge · Lasso · ElasticNet · Polynomial Regression on real-world medical insurance data, with SHAP explainability and business insights.
 
-**[View Kaggle Notebook](#)** | **[View Portfolio](#)**
+**[View Kaggle Notebook: https://www.kaggle.com/code/fizapathan21/medical-insurance-cost-analysis-regression](#)** | **[View Portfolio](#)**
 
 ---
 
