@@ -6,9 +6,9 @@
 ![Domain](https://img.shields.io/badge/Domain-Healthcare-red)
 ![Type](https://img.shields.io/badge/Type-Regression-purple)
 
-> Comparing Linear · Ridge · Lasso · ElasticNet · Polynomial Regression on real-world medical insurance data — with SHAP explainability and business insights.
+> Comparing Linear · Ridge · Lasso · ElasticNet · Polynomial Regression on real-world medical insurance data, with SHAP explainability and business insights.
 
-**[View Kaggle Notebook](#)** | **[View Portfolio](#)** | **[LinkedIn Post](#)**
+**[View Kaggle Notebook](#)** | **[View Portfolio](#)**
 
 ---
 
@@ -18,9 +18,9 @@ Medical insurance costs in the United States are difficult and opaque to predict
 
 This project answers:
 
-> _Which regression model best predicts individual medical insurance costs — and why does it win for this specific data type and problem?_
+> _Which regression model best predicts individual medical insurance costs, and why does it win for this specific data type and problem?_
 
-This is not just a model comparison — it is a **study of when and why each algorithm is the right choice**, with direct business implications.
+This is not just a model comparison; it is a **study of when and why each algorithm is the right choice**, with direct business implications.
 
 ---
 
@@ -34,15 +34,15 @@ This is not just a model comparison — it is a **study of when and why each alg
 | Lasso (L1)         | 0.866     | $2,843     | $4,901     | 0.864 |
 | Linear Regression  | 0.862     | $2,901     | $4,978     | 0.860 |
 
-**Winner: Polynomial Regression + Ridge** — captures the critical nonlinear smoker×BMI interaction that linear models miss.
+**Winner: Polynomial Regression + Ridge** - captures the critical nonlinear smoker×BMI interaction that linear models miss.
 
 ---
 
 ## Key Findings
 
-- **Smoker status is the dominant predictor** — smokers pay 3.8x more on average
-- **The smoker×BMI interaction is nonlinear** — obese smokers cost ~4x more than healthy non-smokers; this is why Polynomial Regression wins
-- **Feature engineering mattered more than model choice** — adding `smoker_bmi` and `age_squared` improved R² by 0.04 across all models
+- **Smoker status is the dominant predictor** - smokers pay 3.8x more on average
+- **The smoker×BMI interaction is nonlinear** - obese smokers cost ~4x more than healthy non-smokers; this is why Polynomial Regression wins
+- **Feature engineering mattered more than model choice** - adding `smoker_bmi` and `age_squared` improved R² by 0.04 across all models
 - **SHAP analysis confirmed** the engineered `smoker_bmi` feature as the top predictor, validating the EDA findings
 
 ---
@@ -115,6 +115,6 @@ Or run directly on Kaggle: **[Open Notebook](#)**
 
 ## About
 
-Built as part of my AI/ML engineering portfolio — working from ML fundamentals through to AI Research Engineer.
+Built as part of my AI/ML engineering portfolio, working from ML fundamentals through to AI Research Engineer.
 
 **[Portfolio](#)** · **[LinkedIn](#)** · **[GitHub](#)**
