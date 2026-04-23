@@ -63,7 +63,7 @@ This is not just a model comparison; it is a **study of when and why each algori
 
 ```
 medical-cost-regression/
-├── medical_cost_regression_showdown.ipynb   # Full analysis
+├── medical-insurance-cost-analysis-regression.ipynb   # Full analysis
 ├── PROJECT_WRITEUP.md
 ├── outputs/
 │   ├── 01_target_distribution.png
@@ -98,7 +98,7 @@ medical-cost-regression/
 git clone https://github.com/fiza-pathan/medical-cost-regression.git
 cd medical-cost-regression
 pip install -r requirements.txt
-jupyter notebook notebooks/medical_cost_regression.ipynb
+jupyter notebook medical-insurance-cost-analysis-regression.ipynb
 ```
 
 Or run directly on Kaggle: **[Open Notebook](https://www.kaggle.com/code/fizapathan21/medical-insurance-cost-analysis-regression)**
