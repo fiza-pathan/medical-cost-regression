@@ -63,9 +63,8 @@ This is not just a model comparison; it is a **study of when and why each algori
 
 ```
 medical-cost-regression/
-├── notebooks/
-│   └── medical_cost_regression_showdown.ipynb   # Full analysis
-├── assets/
+├── medical_cost_regression_showdown.ipynb   # Full analysis
+├── outputs/
 │   ├── 01_target_distribution.png
 │   ├── 02_smoker_effect.png
 │   ├── 03_age_bmi_scatter.png
